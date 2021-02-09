@@ -88,6 +88,7 @@ func Format(any interface{}) string {
 
 var letterRunes = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
+//RandStringRunes 随机字符串
 func RandStringRunes(n int) string {
 	b := make([]rune, n)
 	for i := range b {
@@ -102,21 +103,25 @@ func Md5(src string) string {
 	return hex.EncodeToString(sum[:])
 }
 
+//Encode64 base64编码
 func Encode64(src string) string {
 	return base64.StdEncoding.EncodeToString([]byte(src))
 }
 
+//Decode64 base64解码
 func Decode64(src string) (string, error) {
 	bytes, err := base64.StdEncoding.DecodeString(src)
 	return string(bytes), err
 }
 
+//Str2Bytes 字符串转字节列表
 func Str2Bytes(src string) []byte {
 	x := (*[2]uintptr)(unsafe.Pointer(&src))
 	b := [3]uintptr{x[0], x[1], x[1]}
 	return *(*[]byte)(unsafe.Pointer(&b))
 }
 
+//Bytes2Str 字节列表转字符串
 func Bytes2Str(src []byte) string {
 	return *(*string)(unsafe.Pointer(&src))
 }
